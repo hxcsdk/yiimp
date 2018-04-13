@@ -1,0 +1,6 @@
+package: github.com/hybridnetwork/yiimp
+import:
+- package: github.com/hybridnetwork/hxrpcclient
+- package: github.com/hybridnetwork/hxutil
+- package: github.com/hybridnetwork/hxd
+  version: dev

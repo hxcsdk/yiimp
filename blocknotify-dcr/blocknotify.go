@@ -14,16 +14,17 @@ import (
 	"path/filepath"
 
 	"bytes" // dcrd > 0.6+
-	"github.com/decred/dcrd/wire"
 
-	"github.com/decred/dcrrpcclient"
-//	"github.com/decred/dcrutil"
+	"github.com/hybridnetwork/hxd/wire"
+
+	dcrrpcclient "github.com/hybridnetwork/hxrpcclient"
+	//	"github.com/decred/dcrutil"
 )
 
 const (
 	processName = "blocknotify"    // set the full path if required
 	stratumDest = "yaamp.com:3252" // stratum host:port
-	coinId = "1574"                // decred database coin id
+	coinId      = "1574"           // decred database coin id
 
 	dcrdUser = "yiimprpc"
 	dcrdPass = "myDcrdPassword"
@@ -43,20 +44,19 @@ func main() {
 			var bhead wire.BlockHeader
 			err := bhead.Deserialize(bytes.NewReader(blockHeader))
 			if err == nil {
-				str := bhead.BlockHash().String();
-				args := []string{ stratumDest, coinId, str }
+				str := bhead.BlockHash().String()
+				args := []string{stratumDest, coinId, str}
 				out, err := exec.Command(processName, args...).Output()
 				if err != nil {
 					log.Printf("err %s", err)
 				} else if debug {
 					log.Printf("out %s", out)
 				}
-				if (debug) {
+				if debug {
 					log.Printf("Block connected: %s", str)
 				}
 			}
 		},
-
 	}
 
 	// Connect to local dcrd RPC server using websockets.
@@ -70,13 +70,13 @@ func main() {
 	}
 
 	connCfg := &dcrrpcclient.ConnConfig{
-		Host:         "127.0.0.1:9109",
-		Endpoint:     "ws", // websocket
+		Host:     "127.0.0.1:14009",
+		Endpoint: "ws", // websocket
 
-		User:         dcrdUser,
-		Pass:         dcrdPass,
+		User: dcrdUser,
+		Pass: dcrdPass,
 
-		DisableTLS: (certs == nil),
+		DisableTLS:   (certs == nil),
 		Certificates: certs,
 	}
 

@@ -1,9 +1,8 @@
-package: github.com/tpruvot/yiimp/blocknotify-dcr
+package: github.com/hybridnetwork/yiimp/blocknotify-dcr
 import:
-- package: github.com/decred/dcrd
+- package: github.com/hybridnetwork/hxd
+  version: dev
   subpackages:
   - wire
-- package: github.com/decred/dcrjson
-# - package: github.com/decred/dcrrpcclient
-- package: github.com/decred/dcrutil
-
+  - dcrjson
+- package: github.com/hybridnetwork/hxutil
